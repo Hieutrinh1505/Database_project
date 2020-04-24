@@ -36,18 +36,20 @@
                   <th>Time</th>
                   <th>Reason</th>
                   <th>Patient ID</th>
-                  <th>Doctor ID</th>
-                  <th>Location</th>
+                  <th>Patient Name</th>
+                  <th>Office Number</th>
+                  <th>Adress</th>
                 </tr>
                 <% for(var x=0; x<userdata.length; x++) { %>
                 <tr>
                   <td><%= userdata[x].apointment_ID %></td>
                   <td><%= userdata[x].Date %></td>
-                  <td><%= userdata[x].Time %></td>
+                  <td><%= userdata[x].time %></td>
                   <td><%= userdata[x].apointment_reason %></td>
                   <td><%= userdata[x].patient_ID %></td>
-                  <td><%= userdata[x].doctor_ID %></td>
+                  <td><%= userdata[x].patientname %></td>
                   <td><%= userdata[x].office_ID %></td>
+                  <td><%= userdata[x].adress %></td>
                 </tr>
                 <% } %>
               </table><br><br><br>

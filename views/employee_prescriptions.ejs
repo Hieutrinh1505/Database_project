@@ -35,39 +35,29 @@
 
 
               <table style="width:100%">
-                <tr>
-                  <th>Prescription ID</th>
-                  <th>Drug ID</th>
-                  <th>Prescribed by</th>
-                  <th>Patient ID</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                </tr>
-                <% for(var x=0; x<userdata.length; x++) { %>
+                <table style="width:100%">
                   <tr>
-                    <td><%= userdata[x].idPrescription %></td>
-                    <td><%= userdata[x].drug_ID %></td>
-                    <td><%= userdata[x].perscribed_by_doctor_ID %></td>
-                    <td><%= userdata[x].patient_ID %></td>
-                    <td><%= userdata[x].date_prescribed %></td>
-                    <td><%= userdata[x].time_prescribed %></td>
+                    <th>Prescription ID</th>
+                    <th>Medicine Name</th>
+                    <th>Doctor ID</th>
+                    <th>Prescribing Doctor</th>
+                    <th>Patient ID</th>
+                    <th>Patient Name</th>
+                    <th>Date Prescribed</th>
+                    <th>Time Prescribed</th>
                   </tr>
-                  <% } %>
-                
-              </table><br><br><br>
-              
-              <h1>Drug Name Key</h1><br>
-              <table style="width:100%">
-                <tr>
-                  <th>Drug ID</th>
-                  <th>Drug Name</th>
-                </tr>
-                <% for(var x=0; x<medicine.length; x++) { %>
-                  <tr>
-                    <td><%= medicine[x].Medicine_ID %></td>
-                    <td><%= medicine[x].Medicine_Name %></td>
-                  </tr>
-                  <% } %>
+                  <% for(var x=0; x<userdata.length; x++) { %>
+                    <tr>
+                      <td><%= userdata[x].idPrescription %></td>
+                      <td><%= userdata[x].Medicine_Name %></td>
+                      <td><%= userdata[x].prescribed_by_doctor_ID %></td>
+                      <td><%= userdata[x].name%></td>
+                      <td><%= userdata[x].patient_ID %></td>
+                      <td><%= userdata[x].patientname %></td>
+                      <td><%= userdata[x].date_prescribed %></td>
+                      <td><%= userdata[x].time_prescribed %></td>
+                    </tr>
+                    <% } %>
                 
               </table><br><br><br>
           </div>
@@ -81,7 +71,13 @@
                         <input type="text" id="choosepatientID" name="patientID" placeholder="Enter Patient ID" required><br>
                         
                         <label for="drugname">Drug ID:</label><br>
-                        <input type="text" id="drugname" name="drugID" placeholder="Enter Drug ID" required><br><br>
+                        <select id ="changedrug" name="drugID" required>
+                          <option disabled selected value> select a medicine to prescribe</option>
+                          <% for (var i=0; i < medicinedata.length; i++){ %>
+                            console.log(medicinedata[i].Medicine_ID%);
+                              <option value = '<%= medicinedata[i].Medicine_ID%>' > <%= medicinedata[i].Medicine_Name %> </option>
+                          <% } %>
+                        </select> <br>
                     
                         <input type="submit" value="Submit">
                     </form>

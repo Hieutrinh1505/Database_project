@@ -8,7 +8,8 @@ var connection = mysql.createConnection({
 	host: '73.32.82.191',
     user: 'team7vue',
     password:'team7team7',
-    database:'Team7-Medical'
+	database:'Team7-Medical',
+	multipleStatements: true
 });
 var app = express();
 app.use(session({
@@ -87,16 +88,8 @@ exports.employeeauth = function(req, res) {
 				req.session.employeeID = results[0].employee_ID;
 				req.session.employee_Type = results[0].employee_Type;
 				if(results[0].employee_Type == "Doctor") res.redirect('/dhome');
-				if(results[0].employee_Type == "Nurse") res.redirect('/nursehome');
-				
-					
-					
-			
-				
+				if(results[0].employee_Type == "Nurse") res.redirect('/nursehome');				
 			} 
-			
-				
-
 			else {
 		res.send('Incorrect Username and/or Password!');
 		console.log(results);
@@ -105,8 +98,6 @@ exports.employeeauth = function(req, res) {
 		});
 	} else {
     res.send('Please enter Username and Password!');
-    
-
 		res.end();
 	}
 	// connection.query(sql2,[employeeID],function(error,results,fields){
@@ -134,14 +125,12 @@ exports.auth = function(req, res) {
 		});
 	} else {
     res.send('Please enter Username and Password!');
-    
-
 		res.end();
 	}
 }
 exports.dappointment = function(req,res){
 	var id = req.session.employeeID;
-	var sql = 'SELECT * FROM `team7-medical`.`apointment` WHERE doctor_ID = ? ';
+	var sql = 'SELECT A.apointment_ID, A.Date, A.time, A.apointment_reason, A.patient_ID, Pa.name AS patientname, A.office_ID, O.adress FROM apointment AS A JOIN  office AS O ON A.office_ID = O.office_ID JOIN patient AS Pa ON A.patient_ID = Pa.patient_ID WHERE doctor_ID = ?';
 	
 	connection.query(sql,id,function(error,results,fields){
 		if(results.length > 0){
@@ -166,20 +155,17 @@ exports.cancel = function(req,res){
 
 exports.employeeprescription = function(req,res){
 	var id = req.session.employeeID;
-	var sql = 'SELECT * FROM `team7-medical`.`prescription` WHERE perscribed_by_doctor_ID = ? ';
-	var sql2 = "SELECT * FROM `team7-medical`.`medicine_names`";
-	connection.query(sql2,function(error,results2){
-		if(error) throw error;
-		connection.query(sql,id,function(error,results,fields){
-			if(results.length > 0){
-				console.log(results);
-				res.render('employee_prescriptions',{userdata : results, medicine: results2});
-			}
-			else{
-				throw error;
-			}
-		});
-	})
+	var sql = 'SELECT P.idPrescription, M.Medicine_Name, P.prescribed_by_doctor_ID, E.name, P.patient_ID, Pa.name AS patientname, P.date_prescribed, P.time_prescribed FROM prescription AS P JOIN medicine_names AS M ON P.drug_ID = M.Medicine_ID JOIN employee as E ON P.prescribed_by_doctor_ID = E.employee_ID JOIN patient as Pa ON P.patient_ID = Pa.Patient_ID WHERE P.prescribed_by_doctor_ID = 1; SELECT * FROM medicine_names;'
+	connection.query(sql,id,function(error,results,fields){
+		//console.log(results);
+		if(results[0].length > 0){
+			//console.log(results.length);
+			res.render('employee_prescriptions',{userdata : results[0], medicinedata : results[1], user_ID : id});
+		}
+		else{
+			throw error;
+		}
+	});
 	
 }
 
@@ -200,11 +186,11 @@ exports.submitprescription = function(req,res){
 }
 exports.notes = function(req,res){
 	var id = req.session.employeeID;
-	var sql = 'SELECT * FROM `team7-medical`.`history/diagnosis` WHERE updated_By_Doctor_ID = ? ';
+	var sql = 'SELECT H.patient_ID, Pa.name, H.date, E.name AS doctorname, H.blood_pressure, H.weight_lb, H.temperature_F, H.patient_input, H.doctors_notes, O.adress FROM `history/diagnosis` AS H JOIN patient AS Pa ON H.patient_ID = Pa.patient_ID JOIN employee AS E ON H.updated_By_Doctor_ID = E.employee_ID JOIN office AS O ON H.updated_In_Office = O.office_ID WHERE updated_By_Doctor_ID = ?;   SELECT office_ID, adress FROM `team7-medical`.office';
 	connection.query(sql,id,function(error,results,fields){
-		if(results.length > 0){
-			console.log(results);
-			res.render('employee_summary',{userdata : results, user_ID : id});
+		if(results[0].length > 0){
+			//console.log(results);
+			res.render('employee_summary',{userdata : results[0], officedata: results[1], user_ID : id});
 		}
 		else{
 			throw error;
@@ -236,9 +222,9 @@ exports.updatenotes = function(req,res){
 exports.appointment = function(req,res){
 	var emp = "Doctor";
 	var id = req.session.patientID;
-	var sql = 'SELECT * FROM `team7-medical`.`apointment` WHERE patient_ID = ? ';
-	var sql2 = "SELECT employee_ID FROM `team7-medical`.`employee` WHERE employee_Type = ?";
-	var sql3 = "SELECT office_ID FROM `team7-medical`.`office`";
+	var sql = 'SELECT A.apointment_ID, A.Date, A.time, A.apointment_reason, A.patient_ID, Pa.name AS patientname, A.doctor_ID, E.name, O.adress FROM apointment AS A JOIN patient AS Pa ON A.patient_ID = Pa.patient_ID JOIN employee AS E ON A.doctor_ID = E.employee_ID Join office AS O ON A.office_ID = O.office_ID WHERE A.patient_ID = ? ORDER BY A.date';
+	var sql2 = "SELECT employee_ID, name FROM `team7-medical`.`employee` WHERE employee_Type = ?";
+	var sql3 = "SELECT office_ID, adress FROM `team7-medical`.`office`";
 	connection.query(sql2,[emp],function(error,rows){
 		if (error) throw error;
 		connection.query(sql3,function(error,rows2){
@@ -304,14 +290,10 @@ exports.scheduleappointment = function(req,res){
 		
 		});
 	}
-	
-	
 	// if(day != null){
-		
 	// 	connection.query(sql,[day,time,notes,id,doctor,location],function(error,result,fields){
 	// 	if(error) throw error;
 	// 	else{
-			
 	// 		res.redirect('/appointment');
 	// 	}
 	// })
@@ -331,10 +313,10 @@ exports.scheduleappointment = function(req,res){
 }
 exports.history = function(req,res){
 	var id = req.session.patientID
-	var sql = 'SELECT * FROM `team7-medical`.`history/diagnosis` WHERE patient_ID = ? ';
+	var sql = 'SELECT H.patient_ID, Pa.name AS patientname, H.date, H.updated_By_Doctor_ID, E.name AS doctorname, H.blood_pressure, H.weight_lb, H.temperature_F, H.patient_input, H.doctors_notes, O.adress FROM `team7-medical`.`history/diagnosis` as H JOIN patient AS Pa ON H.patient_ID = Pa.patient_ID JOIN employee AS E ON H.updated_By_Doctor_ID = E.employee_ID Join Office AS O ON H.updated_In_Office = O.office_ID WHERE H.patient_ID = ? ORDER BY H.date';
 	connection.query(sql,id,function(error,results,fields){
 		if(results.length > 0){
-			console.log(results);
+			//console.log(results);
 			res.render('patient_history',{userdata : results, user_ID : id});
 		}
 		else{
@@ -348,7 +330,7 @@ exports.location = function(req,res){
 	var sql = 'SELECT * FROM `team7-medical`.`office` ';
 	connection.query(sql,function(error,results,fields){
 		if(results.length > 0){
-			console.log(results);
+			//console.log(results);
 			res.render('locationandhours',{userdata : results, user_ID : id});
 		}
 		else{
@@ -359,19 +341,15 @@ exports.location = function(req,res){
 }			
 exports.patientprescription = function(req,res){
 	var id = req.session.patientID;
-	var sql = 'SELECT * FROM `team7-medical`.`prescription` WHERE patient_ID = ? ';
-	var sql2 = "SELECT * FROM `team7-medical`.`medicine_names`";
-	connection.query(sql2,function(error,results2){
-		if(error) throw error;
-		connection.query(sql,id,function(error,results,fields){
-			if(results.length > 0){
-				console.log(results2);
-				res.render('patient_prescription',{userdata : results, medicine : results2});
-			}
-			else{
-				res.redirect('/error3');
-			}
-		});
+	var sql = 'SELECT P.idPrescription, M.Medicine_Name, E.name AS doctorname, Pa.name AS patientname, P.date_prescribed, P.time_prescribed FROM prescription AS P JOIN medicine_names AS M ON P.drug_ID = M.Medicine_ID JOIN employee AS E ON P.prescribed_by_doctor_ID = E.employee_ID JOIN patient AS Pa ON P.patient_ID = Pa.patient_ID WHERE P.patient_ID = ? ORDER BY P.date_prescribed ';
+	connection.query(sql,id,function(error,results,fields){
+		if(results.length > 0){
+			//console.log(results);
+			res.render('patient_prescription',{userdata : results, user_ID : id});
+		}
+		else{
+			res.redirect('/error3');
+		}
 	});
 }
 
@@ -449,9 +427,6 @@ exports.employeeacctsetting = function(req,res){
 
 }
 
-
-
-
 exports.accountsetting = function(req,res){
 	var id = req.session.patientID;
 	var password = req.body.password;
@@ -468,7 +443,8 @@ exports.accountsetting = function(req,res){
 	connection.query(sql,[name,DOB,password,phone,sex,address,ICEname,ICEnumber,email,id],function(error,results,fields){
 		if(error) throw error;
 		else{
-			res.send("Successfully update your account");
+			res.redirect('/home');
+			//res.send("Successfully update your account");
 		}
 	});
 
@@ -490,8 +466,7 @@ exports.employeeaccountsetting = function(req,res){
 		if(error) throw error;
 		else{
 			
-			
-			res.send("Successfully update your account");
+			res.send("Successfully update your account" + " ------- " + "Please press backwards(arrow) twice to return to the employee menu");
 		}
 	});
 

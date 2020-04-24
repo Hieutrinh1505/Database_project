@@ -34,28 +34,30 @@
           <table style="width:100%">
             <tr>
               <th>Patient ID</th>
-              <th>Location</th>
+              <th>Patient Name</th>
               <th>Date</th>
-              <th>Doctor</th>
+              <th>Doctor ID</th>
+              <th>Doctor Name </th>
               <th>Blood Pressure</th>
-              <th>Weight</th>
-              <th>Temperature</th>
+              <th>Weight(lb)</th>
+              <th>Temperature(F)</th>
               <th>Reason for visit</th>
-              
               <th>Doctor's Notes</th>
+              <th>Office Location</th>
             </tr>
             <% for(var x=0; x<userdata.length; x++) { %>
               <tr>
                 <td><%= userdata[x].patient_ID %></td>
-                <td><%= userdata[x].updated_In_Office %></td>
+                <td><%= userdata[x].patientname %></td>
                 <td><%= userdata[x].date %></td>
                 <td><%= userdata[x].updated_By_Doctor_ID %></td>
+                <td><%= userdata[x].doctorname %></td>
                 <td><%= userdata[x].blood_pressure %></td>
                 <td><%= userdata[x].weight_lb %></td>
                 <td><%= userdata[x].temperature_F %></td>
                 <td><%= userdata[x].patient_input %></td>
-                
                 <td><%= userdata[x].doctors_notes %></td>
+                <td><%= userdata[x].adress %></td>
               </tr>
               <% } %>
             

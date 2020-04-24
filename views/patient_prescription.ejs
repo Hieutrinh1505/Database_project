@@ -33,42 +33,25 @@
           <table style="width:100%">
             <tr>
               <th>Prescription ID</th>
-              <th>Drug ID</th>
-              <th>Prescribed by Doctor_ID</th>
-              <th>Patient ID</th>
-              <th>Date</th>
-              <th>Time</th>
+              <th>Medicine For </th>
+              <th>Prescribed by Doctor</th>
+              <th>Patient Name</th>
+              <th>Date Prescribed</th>
+              <th>Time Prescribed </th>
               
             </tr>
             <% for(var x=0; x<userdata.length; x++) { %>
               <tr>
                 <td><%= userdata[x].idPrescription %></td>
-                <td><%= userdata[x].drug_ID %></td>
-                <td><%= userdata[x].perscribed_by_doctor_ID %></td>
-                <td><%= userdata[x].patient_ID %></td>
+                <td><%= userdata[x].Medicine_Name %></td>
+                <td><%= userdata[x].doctorname %></td>
+                <td><%= userdata[x].patientname %></td>
                 <td><%= userdata[x].date_prescribed %></td>
                 <td><%= userdata[x].time_prescribed %></td>
                
               </tr>
-              <% } %>
-            
+            <% } %>
           </table><br><br><br>
-
-          <h1>Drug Name Key</h1><br>
-              <table style="width:100%">
-                <tr>
-                  <th>Drug ID</th>
-                  <th>Drug Name</th>
-                </tr>
-                <% for(var x=0; x<medicine.length; x++) { %>
-                  <tr>
-                    <td><%= medicine[x].Medicine_ID %></td>
-                    <td><%= medicine[x].Medicine_Name %></td>
-                  </tr>
-                  <% } %>
-                
-              </table><br><br><br>
-          </div>
 
     </body>
 

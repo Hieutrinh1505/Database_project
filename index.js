@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
 	
-	response.send("Hello world");
+	res.redirect('auth');
 });
 app.get('/home', function(req, res) {
 	res.sendfile(path.join(__dirname,'./views/patient_home.html'));
