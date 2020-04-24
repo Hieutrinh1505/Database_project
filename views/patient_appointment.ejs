@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <title>Patient Appointment</title>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand">Team 7 Medical Clinic Database</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li><a href="/auth">Patient Login / Signup</a></li>
+                <li><a href="/employeeauth">Employee Login</a></li>
+                <li class="active"><a href="/home">Home</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <h1>Upcoming Appointment(s)</h1><br>
+                <table style="width:100%">
+                  <tr>
+                    <th>Appointment ID</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                    <th>Patient ID</th>
+                    <th>Doctor ID</th>
+                    <th>Location</th>
+                  </tr>
+                  <% for(var x=0; x<userdata.length; x++) { %>
+                  <tr>
+                    <td><%= userdata[x].apointment_ID %></td>
+                    <td><%= userdata[x].Date %></td>
+                    <td><%= userdata[x].Time %></td>
+                    <td><%= userdata[x].apointment_reason %></td>
+                    <td><%= userdata[x].patient_ID %></td>
+                    <td><%= userdata[x].doctor_ID %></td>
+                    <td><%= userdata[x].office_ID %></td>
+                  </tr>
+                  <% } %>
+                  
+                </table><br><br><br>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                <form action="/appointment" method="POST">
+                  <h1>Cancel Appointment</h1><br>
+                  <label for="cancelappointment">Select Appointment:</label><br>
+                  <input type="text" id="cancelappointment" name="cancelappointment" placeholder="Enter Appointment ID" required><br><br>
+                  <input type="submit" value="Submit">
+                 </form> 
+
+              </div>
+
+              <div class="col-lg-6">
+                <h1>Schedule Appointment</h1><br>
+                <form action="/appointment" method="POST">
+                  <label for="appointmentdate">Select Date:</label><br>
+                  <input type="date" id="appointmentdate" name="day" required><br>
+
+                  <label for="appointmenttime">Select Time:</label><br>
+                  <input type="time" id="appointmenttime" name="time" required><br>
+
+                  <label for="appointmentlocation">Choose Location:</label><br>
+                  <select id="appointmentlocation" name="location" required>
+                    <option disabled selected value>Select an option</option>
+                    
+                    <% for(var x=0; x<office.length; x++) { %>
+                    <option><%= office[x].office_ID %></option>
+                    <% } %>
+                </select><br>
+
+                  <label for="appointmentdoctor">Choose Doctor:</label><br>
+                  <select id="appointmentlocation" name="doctor" required>
+                    
+                    <option disabled selected value>Select an option</option>
+                    <% for(var x=0; x<doctor.length; x++) { %>
+                    <option><%= doctor[x].employee_ID %></option>
+                    <% } %>
+                </select><br><br>
+
+                  <textarea name="notes" rows="3" cols="30" placeholder="Reason for visit" required></textarea> <br>
+
+                  <br>
+                  <input type="submit" value="Submit">
+                 </form> 
+              </div>
+            </div>
+
+            
+          </div>
+
+    </body>
+</html>

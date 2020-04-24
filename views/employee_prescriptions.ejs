@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title>Employee Prescription</title>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand">Team 7 Medical Clinic Database</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li><a href="/auth">Patient Login / Signup</a></li>
+                <li><a href="/employeeauth">Employee Login</a></li>
+                <li class="active"><a href="/dhome">Home</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <h1>Prescriptions</h1><br>
+              </div>
+            </div>
+
+
+              <table style="width:100%">
+                <tr>
+                  <th>Prescription ID</th>
+                  <th>Drug ID</th>
+                  <th>Prescribed by</th>
+                  <th>Patient ID</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                </tr>
+                <% for(var x=0; x<userdata.length; x++) { %>
+                  <tr>
+                    <td><%= userdata[x].idPrescription %></td>
+                    <td><%= userdata[x].drug_ID %></td>
+                    <td><%= userdata[x].perscribed_by_doctor_ID %></td>
+                    <td><%= userdata[x].patient_ID %></td>
+                    <td><%= userdata[x].date_prescribed %></td>
+                    <td><%= userdata[x].time_prescribed %></td>
+                  </tr>
+                  <% } %>
+                
+              </table><br><br><br>
+              
+              <h1>Drug Name Key</h1><br>
+              <table style="width:100%">
+                <tr>
+                  <th>Drug ID</th>
+                  <th>Drug Name</th>
+                </tr>
+                <% for(var x=0; x<medicine.length; x++) { %>
+                  <tr>
+                    <td><%= medicine[x].Medicine_ID %></td>
+                    <td><%= medicine[x].Medicine_Name %></td>
+                  </tr>
+                  <% } %>
+                
+              </table><br><br><br>
+          </div>
+
+          <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form action="/employeeprescription" method = "POST">
+                        <h1>Prescribe Drug</h1>
+                        <label for="choosepatientID">Choose Patient ID:</label><br>
+                        <input type="text" id="choosepatientID" name="patientID" placeholder="Enter Patient ID" required><br>
+                        
+                        <label for="drugname">Drug ID:</label><br>
+                        <input type="text" id="drugname" name="drugID" placeholder="Enter Drug ID" required><br><br>
+                    
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>

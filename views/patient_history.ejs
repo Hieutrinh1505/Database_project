@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Patient History</title>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand">Team 7 Medical Clinic Database</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li><a href="/auth">Patient Login / Signup</a></li>
+                <li><a href="/employeeauth">Employee Login</a></li>
+                <li class="active"><a href="/home">Home</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="container">
+            <div class="row">
+              <h1>History</h1><br>
+            </div>
+          </div>
+          <table style="width:100%">
+            <tr>
+              <th>Patient ID</th>
+              <th>Location</th>
+              <th>Date</th>
+              <th>Doctor</th>
+              <th>Blood Pressure</th>
+              <th>Weight</th>
+              <th>Temperature</th>
+              <th>Reason for visit</th>
+              
+              <th>Doctor's Notes</th>
+            </tr>
+            <% for(var x=0; x<userdata.length; x++) { %>
+              <tr>
+                <td><%= userdata[x].patient_ID %></td>
+                <td><%= userdata[x].updated_In_Office %></td>
+                <td><%= userdata[x].date %></td>
+                <td><%= userdata[x].updated_By_Doctor_ID %></td>
+                <td><%= userdata[x].blood_pressure %></td>
+                <td><%= userdata[x].weight_lb %></td>
+                <td><%= userdata[x].temperature_F %></td>
+                <td><%= userdata[x].patient_input %></td>
+                
+                <td><%= userdata[x].doctors_notes %></td>
+              </tr>
+              <% } %>
+            
+          </table>
+
+    </body>
+
+</html>

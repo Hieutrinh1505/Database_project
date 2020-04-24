@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Patient Login Page</title>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+    </head>
+    <body>
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand">Team 7 Medical Clinic Database</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/auth">Patient Login / Signup</a></li>
+                <li><a href="/employeeauth">Employee Login</a></li>
+              </ul>
+            </div>
+          </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form action="/auth" method = "POST">
+                        <h1>Login</h1><br>
+                        <label for="loginusername">Username:</label><br>
+                        <input type="text" id="loginusername" name="username" placeholder="Enter Username" required><br>
+                        <label for="loginpassword">Password:</label><br>
+                        <input type="text" id="loginpassword" name="password" placeholder="Enter Password" required><br><br>
+                        <input type="submit" value="Submit">
+                    </form> 
+                </div>
+    
+                <div class="col-lg-6">
+                    <form action="/register" method = "POST">
+                        <h1>Signup</h1><br>
+                        <label for="signupusername">Username:</label><br>
+                        <input type="text" id="signupusername" name="username" placeholder="Enter Username" required><br>
+    
+                        <label for="signuppassword">Password:</label><br>
+                        <input type="text" id="signuppassword" name="password" placeholder="Enter Password" required><br>
+    
+                        <label for="signupname">Name:</label><br>
+                        <input type="text" id="signupname" name="name" placeholder="Enter Full Name" required><br>
+
+                        <label for="signupDOB">Date of Birth:</label><br>
+                        <input type="date" id="signupDOB" name="DOB" placeholder="Enter DOB" required><br>
+    
+                        <label for="signupemail">Email:</label><br>
+                        <input type="email" id="signupemail" name="email" placeholder="Enter Email" required><br>
+                        
+                        <label for="signupphone">Telephone Number:</label><br>
+                        <input type="text" id="signupphone" name="phone" placeholder="Enter Phone Number" required><br>
+                        
+                        <label for="signupaddress">Address:</label><br>
+                        <input type="text" id="singupaddress" name="address" placeholder="Enter Phone Number" required><br>
+                        
+                        <label for="signupsex">Sex:</label><br>
+                        <select id="singupsex" name="sex" required>
+                            <option disabled selected value>Select an option</option>
+                            <option>Other</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select><br>
+                        
+                        
+
+                        <p>Emergency Contact Info</p>
+                        <label for="ICEname">Name:</label><br>
+                        <input type="text" id="ICEname" name="ICEname" placeholder="Enter Full Name" required><br>
+
+                        <label for="ICEnumber">Number:</label><br>
+                        <input type="text" id="ICEnumber" name="number" placeholder="Enter Phone Number" required><br>
+                        
+                        <br>
+    
+                        <input type="submit" value="Submit">
+                    </form> 
+                </div>
+    
+            </div>
+        </div>
+
+    </body>
+</html>

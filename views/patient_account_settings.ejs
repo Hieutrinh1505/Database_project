@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>Patient Account Settings</title>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand">Team 7 Medical Clinic Database</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li><a href="patient_login_signup.html">Patient Login / Signup</a></li>
+                <li><a href="employee_login.html">Employee Login</a></li>
+                <li class="active"><a href="/home">Home</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="container">
+            <h1>Account Settings</h1><br>
+            <form action="/accountsetting" method="POST">
+
+              <label for="changepassword">Password:</label><br>
+              <input type="text" id="changepassword" name="password" value="<%= userdata[0].password %>" required><br>
+
+              <label for="changename">Name:</label><br>
+              <input type="text" id="changename" name="name" value="<%= userdata[0].name %>" required><br>
+
+              <label for="changeemail">Email:</label><br>
+              <input type="email" id="changeemail" name="email" value="<%= userdata[0].email %>" required><br>
+              
+              <label for="changephone">Telephone Number:</label><br>
+              <input type="text" id="changephone" name="phone" value="<%= userdata[0].phone_number %>" required><br>
+              
+              <label for="changeaddress">Address:</label><br>
+              <input type="text" id="changeaddress" name="address" value="<%= userdata[0].adress %>" required><br>
+              
+              <label for="changesex">Sex:</label><br>
+              <select id="changesex" name="sex" required>
+                  <option disabled selected value>Select an option</option>
+                  <option>Other</option>
+                  <option>Male</option>
+                  <option>Female</option>
+              </select><br>
+              
+
+              
+              
+              <br>
+
+              <p>Emergency Contact Info</p>
+              <label for="changeICEname">Name:</label><br>
+              <input type="text" id="changeICEname" name="ICEname" value="<%= userdata[0].person_ICE %>" required><br>
+
+              <label for="changeICEnumber">Number:</label><br>
+              <input type="text" id="changeICEnumber" name="ICEnumber" value="<%= userdata[0].phone_ICE %>" required><br>
+              
+              <br>
+
+              <input type="submit" value="Submit">
+          </form> 
+          </div>
+
+    </body>
+
+</html>

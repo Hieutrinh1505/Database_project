@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>Pharmacy Prescription</title>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand">Team 7 Medical Clinic Database</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li disabled><a>{{user}}</a></li>
+                <li><a href="patient_login_signup.html">Patient Login / Signup</a></li>
+                <li><a href="employee_login.html">Employee Login</a></li>
+                <li class="active"><a href="/home">Home</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="container">
+            <div class="row">
+                <h1>Prescriptions</h1><br>
+            </div>
+          </div>
+          <table style="width:100%">
+            <tr>
+              <th>Prescription ID</th>
+              <th>Location</th>
+              <th>Drug ID</th>
+              <th>Patient ID</th>
+              <th>Doctor ID</th>
+              <th>Prescription Date</th>
+              <th>Prescription Time</th>
+              <th>Date Filled</th>
+              <th>Time Filled</th>
+
+            </tr>
+            <tr>
+              <td>Prescription 1</td>
+              <td>69939 somewhere</td>
+              <td>0123</td>
+              <td>Patient 1</td>
+              <td>Doctor 1</td>
+              <td>03/03/20</td>
+              <td>4:00 PM</td>
+              <td>03/05/20</td>
+              <td>5:00 PM</td>
+            </tr>
+            
+          </table><br><br><br>
+
+          <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form action="/fillprescription">
+                        <h1>Fill Prescription</h1>
+                        <label for="chooseprescriptionID">Choose Prescription ID:</label><br>
+                        <input type="text" id="chooseprescriptionID" name="chooseprescriptionID" placeholder="Enter Prescription ID" required><br>
+                        <br>
+          
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>

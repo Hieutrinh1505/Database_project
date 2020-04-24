@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Front Desk Home Page</title>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand">Team 7 Medical Clinic Database</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li disabled><a >{{user}}</a></li>
+                <li><a href="patient_login_signup.html">Patient Login / Signup</a></li>
+                <li><a href="employee_login.html">Employee Login</a></li>
+                <li class="active"><a href="/home">Home</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </div>
+          </nav>
+        
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <form action="employee_account_settings.html">
+                        <img src="https://schoenemans.com/media/library/fluid-mod-page/49/gallery/Stanley%20Tools%208-crop-1500x1000-2e069.webp" class="img-rounded" alt="Image" width="200" height="150"><br>
+                        <label>Account Settings</label><br>
+                        <input type="submit" value="Go"></input>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <form action="locationandhours.html">
+                        <img src="data:image/png;base64,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" class="img-rounded" alt="Image" width="200" height="150"><br>
+                        <label>Location and Hours</label><br>
+                        <input type="submit" value="Go"></input>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <form action="reports.html">
+                        <img src="https://act.campaign.gov.uk/wp-content/uploads/sites/25/2017/02/form_icon-1.jpg" class="img-rounded" alt="Image" width="200" height="150"><br>
+                        <label>Reports</label><br>
+                        <input type="submit" value="Go"></input>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+
+    </body>
+</html>

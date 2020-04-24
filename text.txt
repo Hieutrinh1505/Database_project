@@ -1,0 +1,16 @@
+FrontEnd needs:
+1.	Login: provides username and password, check if valid user.
+2.	Signup: provides username, password, first and last name, sex, DOB, phone number, address, and email.  Need check to see if username already exists.
+3.	Patient icons:
+a.	Appointment: Needs list of upcoming appointments, send all fields of appointment.  Will create new appointment if selected doctor is not busy, can also cancel (delete) appointments
+b.	Referral, prescription, and history(separate icons, same concept): allows user to choose date range and output any appointments in chosen dates. Provides two dates and will need all fields that are valid for referral, prescription, and history.
+c.	Account settings: provides the same fields as signup, requires all user info for default display, update DB if changes made.
+d.	Locations and hours: need location and hour fields.
+4.	Employee icons:
+a.	Schedule: needs list of upcoming appointments for employee and will send appointment to cancel if necessary.
+b.	Summary/notes: show list of patients previously helped patients. Will send patient chosen, blood pressure, weight, temp, diagnosis and note fields.
+c.	Referral: show list of previously helped patients. Will send chosen patient, doctor refereed to and note field.
+d.	Prescriptions: show list of previously helped patients. Will send chosen patient, drug name, and note fields
+e.	Account settings: provides the same fields as signup, requires all user info for default display, update DB if changes made.
+f.	Locations and hours: need location and hour fields.
+

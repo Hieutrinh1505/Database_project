@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Location and Hours</title>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand">Team 7 Medical Clinic Database</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li><a href="/auth">Patient Login / Signup</a></li>
+                <li><a href="/employeeauth">Employee Login</a></li>
+                <li class="active"><a href="/home">Home</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="container">
+            <div class="row">
+              <h1>Hours and Locations</h1><br>
+              <table style="width:100%">
+                <tr>
+                  <th>Location ID</th>
+                  <th>Address</th>
+                  <th>Capacity</th>
+                  <th>Open From</th>
+                  <th>Open To</th>
+                </tr>
+                <% for(var x=0; x<userdata.length; x++) { %>
+                  <tr>
+                    <td><%= userdata[x].office_ID %></td>
+                    <td><%= userdata[x].adress %></td>
+                    <td><%= userdata[x].patientCapacity %></td>
+                    <td><%= userdata[x].Open_Time_Hour %></td>
+                    <td><%= userdata[x].Close_Time_Hour %></td>
+                  </tr>
+                  <% } %>
+                
+              </table>
+            </div>
+          </div>
+    </body>
+
+</html>
