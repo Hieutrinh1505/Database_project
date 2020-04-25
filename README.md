@@ -1,4 +1,4 @@
-Team 7 Medical Clinic Database
+#Team 7 Medical Clinic Database
 
 Files:
 The Server folder contains the backend portion of the application. The index.js file, contains the routes, post and get methods.
@@ -9,14 +9,14 @@ Running The Application:
 The technology used in the project is html, node.js, express.js, and MySQL.
 
 Web Link to Project:
-http://73.32.82.191:3000/
+localhost:3000/auth
 
 Log in information:
     Patient: This login allows the user to schedule/cancel appointments, view upcoming appointments, view prescriptions, view appointment summaries, view location and hours, and change account settings.
 	
 	example login
         Username: username1
-        Password: password
+        Password: password1
 	
     
 Doctor: This login allows the user to cancel appointments, view upcoming appointments, view/assign prescriptions, view/assign appointment summaries, view location and hours, and change account settings.
@@ -38,6 +38,4 @@ Nurse: This login allows the user to change account settings, view location and 
 	"nurses" are a login used to see reports 
 	
 	
-The database and front end are ran on Kyle Stulen's machine, if at anypoint either the website or database server crash or becomes unavailable
-please call: 832-465-4877    
-(Kyle Stulen's cell, and I will restart the service very promptly)	
+	
