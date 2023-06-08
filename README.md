@@ -25,7 +25,7 @@ Doctor: This login allows the user to cancel appointments, view upcoming appoint
         Username: user1
         Password: pass1
 	
-	trigger #1) a doctor can cancel an apointment of a patient in the doctor's scedule
+	trigger #1) a doctor can cancel an apointment of a patient in the doctor's schedule
 	
 	trigger #2) a patient is unable to be prescribed more than 3 new medications each day
 	
